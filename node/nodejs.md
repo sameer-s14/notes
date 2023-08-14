@@ -97,3 +97,11 @@ console.log(user.getFullName2 === user2.getFullName2); // false because of diff 
 console.log(user.getFullName === user2.getFullName); // true because of same memory
 
 ## what is Reflect.apply?
+
+
+## If you want to study Data Science and Machine Learning for free, check out these resources:
+
+Free interactive roadmaps to learn Data Science and Machine Learning by yourself. Start here: https://aigents.co/learn/roadmaps/intro
+The search engine for Data Science learning resources (FREE). Bookmark your favorite resources, mark articles as complete, and add study notes. https://aigents.co/learn
+Want to learn Data Science from scratch with the support of a mentor and a learning community? Join this Study Circle for free: https://community.aigents.co/spaces/9010170/
+
