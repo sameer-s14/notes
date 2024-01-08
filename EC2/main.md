@@ -4,7 +4,8 @@ You can use Amazon EC2 to launch as many or as few virtual servers as you need, 
 You can add capacity (scale up) to handle compute-heavy tasks, such as monthly or yearly processes, or spikes in website traffic.
 When usage decreases, you can reduce capacity (scale down) again.
 
-## Steps: 
+## Steps To Setup Repository with ec2 and github actions: 
+
 **AWS Console Steps**
 
 Select Launch EC2 instance from aws console from EC2 section.
@@ -95,4 +96,38 @@ jobs:
       touch .env    // Creating env file
       echo "${{sceret.[file name]}}" > .env   // File name is the file created in ***Github  steps section, while setting env file*** to echo it in .env file
 ```
-> You can view the details of action runner in Actions Tab And the process it is taking for implementation for Ci/CD.
+
+* After that commit the changes and now,
+* You can view the details of action runner workflow in **Actions Tab** And the process it is taking for implementation for CI/CD.
+* You can check on server also inside the [action runner]/_work folder there will be a dir named with your repository.
+
+
+## Configuring the Ngnix with proxy information.
+
+change dir to ***etc/ngnix/sites-available***
+This directory conains file called ***default*** which we need to change 
+command to make write changes is ***sudo nano default***
+
+In this file make these changes 
+
+**write after location / {}**
+
+```
+location /api {
+  rewrite ^\/api\/(.*)$1 break;
+  proxy_pass http://localhost:5000; // To redirect the url to this.
+  proxy_set_header HOST $host;
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+```
+
+**After making any changes in Ngnix confihuration restart the ngnix server**
+>sudo systemctl restart ngnix
+
+## Start Server
+
+1. Go to the project directory in **actions folder/_work/git repo name**
+2. Start server
+    > pm2 start server.js --name-[process name(any name for the process)]
+
