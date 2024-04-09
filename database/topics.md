@@ -1,3 +1,6 @@
+
+mysqldump -u 4rpwis2b2k -p -h host -P 3306 --single-transaction thejal_db > my_database_dump.sql
+
 # DBMS Tutorial
 DBMS Tutorial
 What is DatabaseTypes of Databases
